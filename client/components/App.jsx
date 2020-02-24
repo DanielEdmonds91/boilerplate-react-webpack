@@ -1,6 +1,6 @@
 import React from 'react'
 
-import robots from '../../robotsData'
+import robotsData from '../../robotsData'
 import CardList from './CardList'
 import SearchBox from './searchBox'
 
@@ -8,20 +8,25 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      robots: robots,
+      robots: robotsData,
       searchField: ''
     }
+    this.onSearchChange = this.onSearchChange.bind(this)
   }
 
   onSearchChange(e) {
-    console.log(e.target.value)
+    const searchField = e.target.value
+    const filteredRobots = robotsData.filter(robots => {
+      return robots.name.toLowerCase().includes(searchField.toLowerCase())
+    })
+    this.setState({robots:filteredRobots})
   }
   render() {
     return (
       <div>
         <h1>Robo Friends</h1>
         <SearchBox searchChange={this.onSearchChange}/>
-        <CardList robots={robots} />
+        <CardList robots={this.state.robots} />
       </div>
     )
   }
