@@ -3,6 +3,7 @@ import React from 'react'
 import robotsData from '../../robotsData'
 import CardList from './CardList'
 import SearchBox from './searchBox'
+import AddRobotForm from './AddRobotForm'
 
 class App extends React.Component {
   constructor() {
@@ -27,6 +28,7 @@ class App extends React.Component {
         <h1>Robo Friends</h1>
         <SearchBox searchChange={this.onSearchChange}/>
         <CardList robots={this.state.robots} />
+        <AddRobotForm/>
       </div>
     )
   }
